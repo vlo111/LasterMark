@@ -1,15 +1,15 @@
-﻿namespace lasterMark.Model
+﻿namespace lasterMark.ApiModel
 {
     using System.Collections.Generic;
 
     using Newtonsoft.Json;
 
-    public class EventorDto
+    public class EventorApi
     {
         [JsonProperty(PropertyName = "ok")]
         public bool Ok { get; set; }
 
         [JsonProperty(PropertyName = "events")]
-        public List<EventorEventDto> Events { get; set; }
+        public List<EventorEventApi> Events { get; set; }
     }
 }

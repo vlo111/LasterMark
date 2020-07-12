@@ -72,6 +72,7 @@
     <Compile Include="CustomPictureBox.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="ApiModel\Data.cs" />
     <Compile Include="JczLmc.cs" />
     <Compile Include="LMForm.cs">
       <SubType>Form</SubType>
@@ -85,13 +86,15 @@
     <Compile Include="Engrave.Designer.cs">
       <DependentUpon>Engrave.cs</DependentUpon>
     </Compile>
-    <Compile Include="Model\CompetitorDto.cs" />
-    <Compile Include="Model\CompetitorListDto.cs" />
-    <Compile Include="Model\EventorDto.cs" />
-    <Compile Include="Model\EventorEventDto.cs" />
-    <Compile Include="XtraUserControl1.cs" />
-    <Compile Include="XtraUserControl1.Designer.cs">
-      <DependentUpon>XtraUserControl1.cs</DependentUpon>
+    <Compile Include="ApiModel\CompetitorApi.cs" />
+    <Compile Include="ApiModel\CompetitorListApi.cs" />
+    <Compile Include="ApiModel\EventorApi.cs" />
+    <Compile Include="ApiModel\EventorEventApi.cs" />
+    <Compile Include="XtraUserControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="XtraUserControl.Designer.cs">
+      <DependentUpon>XtraUserControl.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Engrave.resx">
       <DependentUpon>Engrave.cs</DependentUpon>
@@ -112,8 +115,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="XtraUserControl1.resx">
-      <DependentUpon>XtraUserControl1.cs</DependentUpon>
+    <EmbeddedResource Include="XtraUserControl.resx">
+      <DependentUpon>XtraUserControl.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.manifest" />
     <None Include="packages.config" />

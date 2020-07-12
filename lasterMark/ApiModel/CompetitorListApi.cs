@@ -1,15 +1,15 @@
 ﻿using System.Collections.Generic;
 
-namespace lasterMark.Model
+namespace lasterMark.ApiModel
 {
     using Newtonsoft.Json;
 
-    class CompetitorListDto
+    class CompetitorListApi
     {
         [JsonProperty(PropertyName = "ok")]
         public bool Ok { get; set; }
 
         [JsonProperty(PropertyName = "competitors")]
-        public List<CompetitorDto> Competitors { get; set; }
+        public List<CompetitorApi> Competitors { get; set; }
     }
 }

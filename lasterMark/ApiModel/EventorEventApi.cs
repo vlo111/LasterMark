@@ -1,10 +1,10 @@
-﻿namespace lasterMark.Model
+﻿namespace lasterMark.ApiModel
 {
     using System;
 
     using Newtonsoft.Json;
 
-    public class EventorEventDto
+    public class EventorEventApi
     {
         [JsonProperty(PropertyName = "id")]
         public int Id { get; set; }

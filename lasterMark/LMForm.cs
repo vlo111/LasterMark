@@ -10,7 +10,7 @@
     using DevExpress.Utils.Extensions;
     using DevExpress.XtraEditors;
 
-    using lasterMark.Model;
+    using lasterMark.ApiModel;
 
     using Newtonsoft.Json;
 
@@ -167,7 +167,7 @@
                 // If required by the server, set the credentials.
                 request.Credentials = CredentialCache.DefaultCredentials;
 
-                EventorDto result = new EventorDto();
+                EventorApi result = new EventorApi();
 
                 request.Headers["Authorization"] = base64HeaderValue;
 
@@ -186,11 +186,11 @@
                         string responseFromServer = reader.ReadToEnd();
 
                         // the content response.
-                        result = JsonConvert.DeserializeObject<EventorDto>(responseFromServer);
+                        result = JsonConvert.DeserializeObject<EventorApi>(responseFromServer);
                     }
                 }
 
-                CustomFlyoutDialog.ShowForm(this, null, new XtraUserControl1(result));
+                CustomFlyoutDialog.ShowForm(this, null, new XtraUserControl(result));
 
 
             }
