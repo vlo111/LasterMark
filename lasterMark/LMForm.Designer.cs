@@ -36,11 +36,9 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LMForm));
             this.backgroundlayoutControl = new DevExpress.XtraLayout.LayoutControl();
-            this.trackBarFGControl = new DevExpress.XtraEditors.TrackBarControl();
             this.panelControl1 = new DevExpress.XtraEditors.PanelControl();
             this.foregroundPictureBox = new lasterMark.CustomPictureBox(this.components);
             this.backgroundPictureBox = new lasterMark.CustomPictureBox(this.components);
-            this.trackBarBGControl = new DevExpress.XtraEditors.TrackBarControl();
             this.accordionControl1 = new DevExpress.XtraBars.Navigation.AccordionControl();
             this.accordionContentContainer1 = new DevExpress.XtraBars.Navigation.AccordionContentContainer();
             this.layoutControl2 = new DevExpress.XtraLayout.LayoutControl();
@@ -86,21 +84,15 @@
             this.accordionControlSeparator3 = new DevExpress.XtraBars.Navigation.AccordionControlSeparator();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem11 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.Inside = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem10 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem14 = new DevExpress.XtraLayout.LayoutControlItem();
             this.simpleSeparator1 = new DevExpress.XtraLayout.SimpleSeparator();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.backgroundlayoutControl)).BeginInit();
             this.backgroundlayoutControl.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarFGControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarFGControl.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).BeginInit();
             this.panelControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.foregroundPictureBox.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.backgroundPictureBox.Properties)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarBGControl)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarBGControl.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).BeginInit();
             this.accordionControl1.SuspendLayout();
             this.accordionContentContainer1.SuspendLayout();
@@ -136,17 +128,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Inside)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator1)).BeginInit();
             this.SuspendLayout();
             // 
             // backgroundlayoutControl
             // 
-            this.backgroundlayoutControl.Controls.Add(this.trackBarFGControl);
             this.backgroundlayoutControl.Controls.Add(this.panelControl1);
-            this.backgroundlayoutControl.Controls.Add(this.trackBarBGControl);
             this.backgroundlayoutControl.Controls.Add(this.accordionControl1);
             this.backgroundlayoutControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.backgroundlayoutControl.Location = new System.Drawing.Point(0, 0);
@@ -157,65 +145,40 @@
             this.backgroundlayoutControl.TabIndex = 0;
             this.backgroundlayoutControl.Text = "layoutControl1";
             // 
-            // trackBarFGControl
-            // 
-            this.trackBarFGControl.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.trackBarFGControl.EditValue = null;
-            this.trackBarFGControl.Location = new System.Drawing.Point(67, 373);
-            this.trackBarFGControl.Name = "trackBarFGControl";
-            this.trackBarFGControl.Properties.LabelAppearance.Options.UseTextOptions = true;
-            this.trackBarFGControl.Properties.LabelAppearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.trackBarFGControl.Size = new System.Drawing.Size(904, 42);
-            this.trackBarFGControl.StyleController = this.backgroundlayoutControl;
-            this.trackBarFGControl.TabIndex = 24;
-            this.trackBarFGControl.ValueChanged += new System.EventHandler(this.TrackBarFGControl_ValueChanged);
-            // 
             // panelControl1
             // 
             this.panelControl1.Controls.Add(this.foregroundPictureBox);
             this.panelControl1.Controls.Add(this.backgroundPictureBox);
-            this.panelControl1.Location = new System.Drawing.Point(67, 12);
+            this.panelControl1.Location = new System.Drawing.Point(114, 12);
             this.panelControl1.Name = "panelControl1";
-            this.panelControl1.Size = new System.Drawing.Size(904, 311);
+            this.panelControl1.Size = new System.Drawing.Size(857, 403);
             this.panelControl1.TabIndex = 18;
             // 
             // foregroundPictureBox
             // 
-            this.foregroundPictureBox.Location = new System.Drawing.Point(299, 69);
+            this.foregroundPictureBox.Location = new System.Drawing.Point(266, 102);
             this.foregroundPictureBox.MinimumSize = new System.Drawing.Size(10, 10);
             this.foregroundPictureBox.Name = "foregroundPictureBox";
             this.foregroundPictureBox.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.foregroundPictureBox.Properties.Appearance.Options.UseBackColor = true;
+            this.foregroundPictureBox.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.foregroundPictureBox.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
-            this.foregroundPictureBox.Size = new System.Drawing.Size(350, 177);
+            this.foregroundPictureBox.Size = new System.Drawing.Size(353, 179);
             this.foregroundPictureBox.TabIndex = 25;
             this.foregroundPictureBox.DragDrop += new System.Windows.Forms.DragEventHandler(this.PictureBoxFG_DragDrop);
             this.foregroundPictureBox.DragEnter += new System.Windows.Forms.DragEventHandler(this.PictureBoxFG_DragEnter);
             // 
             // backgroundPictureBox
             // 
-            this.backgroundPictureBox.Location = new System.Drawing.Point(61, 50);
+            this.backgroundPictureBox.Location = new System.Drawing.Point(59, 18);
             this.backgroundPictureBox.MinimumSize = new System.Drawing.Size(10, 10);
             this.backgroundPictureBox.Name = "backgroundPictureBox";
             this.backgroundPictureBox.Properties.Appearance.BackColor = System.Drawing.Color.Transparent;
             this.backgroundPictureBox.Properties.Appearance.Options.UseBackColor = true;
+            this.backgroundPictureBox.Properties.BorderStyle = DevExpress.XtraEditors.Controls.BorderStyles.NoBorder;
             this.backgroundPictureBox.Properties.SizeMode = DevExpress.XtraEditors.Controls.PictureSizeMode.Zoom;
-            this.backgroundPictureBox.Size = new System.Drawing.Size(795, 214);
+            this.backgroundPictureBox.Size = new System.Drawing.Size(797, 350);
             this.backgroundPictureBox.TabIndex = 24;
-            // 
-            // trackBarBGControl
-            // 
-            this.trackBarBGControl.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.trackBarBGControl.EditValue = null;
-            this.trackBarBGControl.Location = new System.Drawing.Point(67, 327);
-            this.trackBarBGControl.Name = "trackBarBGControl";
-            this.trackBarBGControl.Properties.LabelAppearance.Options.UseTextOptions = true;
-            this.trackBarBGControl.Properties.LabelAppearance.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
-            this.trackBarBGControl.Properties.Maximum = 500;
-            this.trackBarBGControl.Size = new System.Drawing.Size(904, 42);
-            this.trackBarBGControl.StyleController = this.backgroundlayoutControl;
-            this.trackBarBGControl.TabIndex = 15;
-            this.trackBarBGControl.ValueChanged += new System.EventHandler(this.TrackBarBGControl_ValueChanged);
             // 
             // accordionControl1
             // 
@@ -232,9 +195,8 @@
             this.accordionControl1.Name = "accordionControl1";
             this.accordionControl1.OptionsHamburgerMenu.DisplayMode = DevExpress.XtraBars.Navigation.AccordionControlDisplayMode.Overlay;
             this.accordionControl1.OptionsMinimizing.AllowMinimizeMode = DevExpress.Utils.DefaultBoolean.True;
-            this.accordionControl1.OptionsMinimizing.State = DevExpress.XtraBars.Navigation.AccordionControlState.Minimized;
             this.accordionControl1.ScrollBarMode = DevExpress.XtraBars.Navigation.ScrollBarMode.Touch;
-            this.accordionControl1.Size = new System.Drawing.Size(50, 403);
+            this.accordionControl1.Size = new System.Drawing.Size(97, 403);
             this.accordionControl1.StyleController = this.backgroundlayoutControl;
             this.accordionControl1.TabIndex = 25;
             this.accordionControl1.Text = "accordionControl1";
@@ -263,7 +225,7 @@
             // 
             // logInBtn
             // 
-            this.logInBtn.Location = new System.Drawing.Point(34, 129);
+            this.logInBtn.Location = new System.Drawing.Point(34, 145);
             this.logInBtn.Name = "logInBtn";
             this.logInBtn.Size = new System.Drawing.Size(77, 22);
             this.logInBtn.StyleController = this.layoutControl2;
@@ -273,7 +235,7 @@
             // 
             // passwordInput
             // 
-            this.passwordInput.Location = new System.Drawing.Point(61, 80);
+            this.passwordInput.Location = new System.Drawing.Point(61, 83);
             this.passwordInput.Name = "passwordInput";
             this.passwordInput.Size = new System.Drawing.Size(50, 20);
             this.passwordInput.StyleController = this.layoutControl2;
@@ -281,7 +243,7 @@
             // 
             // loginInput
             // 
-            this.loginInput.Location = new System.Drawing.Point(61, 46);
+            this.loginInput.Location = new System.Drawing.Point(61, 47);
             this.loginInput.Name = "loginInput";
             this.loginInput.Size = new System.Drawing.Size(50, 20);
             this.loginInput.StyleController = this.layoutControl2;
@@ -309,7 +271,7 @@
             this.layoutControlItem22,
             this.emptySpaceItem12});
             this.layoutControlGroup2.Name = "layoutControlGroup2";
-            this.layoutControlGroup2.Size = new System.Drawing.Size(123, 163);
+            this.layoutControlGroup2.Size = new System.Drawing.Size(123, 179);
             this.layoutControlGroup2.TextVisible = false;
             // 
             // layoutControlItem19
@@ -326,13 +288,13 @@
             this.emptySpaceItem9.AllowHotTrack = false;
             this.emptySpaceItem9.Location = new System.Drawing.Point(0, 24);
             this.emptySpaceItem9.Name = "emptySpaceItem9";
-            this.emptySpaceItem9.Size = new System.Drawing.Size(103, 10);
+            this.emptySpaceItem9.Size = new System.Drawing.Size(103, 11);
             this.emptySpaceItem9.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem20
             // 
             this.layoutControlItem20.Control = this.loginInput;
-            this.layoutControlItem20.Location = new System.Drawing.Point(0, 34);
+            this.layoutControlItem20.Location = new System.Drawing.Point(0, 35);
             this.layoutControlItem20.Name = "layoutControlItem20";
             this.layoutControlItem20.Size = new System.Drawing.Size(103, 24);
             this.layoutControlItem20.Text = "Login";
@@ -341,15 +303,15 @@
             // emptySpaceItem11
             // 
             this.emptySpaceItem11.AllowHotTrack = false;
-            this.emptySpaceItem11.Location = new System.Drawing.Point(0, 58);
+            this.emptySpaceItem11.Location = new System.Drawing.Point(0, 59);
             this.emptySpaceItem11.Name = "emptySpaceItem11";
-            this.emptySpaceItem11.Size = new System.Drawing.Size(103, 10);
+            this.emptySpaceItem11.Size = new System.Drawing.Size(103, 12);
             this.emptySpaceItem11.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem21
             // 
             this.layoutControlItem21.Control = this.passwordInput;
-            this.layoutControlItem21.Location = new System.Drawing.Point(0, 68);
+            this.layoutControlItem21.Location = new System.Drawing.Point(0, 71);
             this.layoutControlItem21.Name = "layoutControlItem21";
             this.layoutControlItem21.Size = new System.Drawing.Size(103, 24);
             this.layoutControlItem21.Text = "Password";
@@ -358,15 +320,15 @@
             // emptySpaceItem10
             // 
             this.emptySpaceItem10.AllowHotTrack = false;
-            this.emptySpaceItem10.Location = new System.Drawing.Point(0, 92);
+            this.emptySpaceItem10.Location = new System.Drawing.Point(0, 95);
             this.emptySpaceItem10.Name = "emptySpaceItem10";
-            this.emptySpaceItem10.Size = new System.Drawing.Size(103, 25);
+            this.emptySpaceItem10.Size = new System.Drawing.Size(103, 38);
             this.emptySpaceItem10.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem22
             // 
             this.layoutControlItem22.Control = this.logInBtn;
-            this.layoutControlItem22.Location = new System.Drawing.Point(22, 117);
+            this.layoutControlItem22.Location = new System.Drawing.Point(22, 133);
             this.layoutControlItem22.Name = "layoutControlItem22";
             this.layoutControlItem22.Size = new System.Drawing.Size(81, 26);
             this.layoutControlItem22.TextSize = new System.Drawing.Size(0, 0);
@@ -375,7 +337,7 @@
             // emptySpaceItem12
             // 
             this.emptySpaceItem12.AllowHotTrack = false;
-            this.emptySpaceItem12.Location = new System.Drawing.Point(0, 117);
+            this.emptySpaceItem12.Location = new System.Drawing.Point(0, 133);
             this.emptySpaceItem12.Name = "emptySpaceItem12";
             this.emptySpaceItem12.Size = new System.Drawing.Size(22, 26);
             this.emptySpaceItem12.TextSize = new System.Drawing.Size(0, 0);
@@ -586,11 +548,6 @@
             // 
             this.accordionControlElement3.Elements.AddRange(new DevExpress.XtraBars.Navigation.AccordionControlElement[] {
             this.accordionControlElement4});
-            this.accordionControlElement3.HeaderTemplate.AddRange(new DevExpress.XtraBars.Navigation.HeaderElementInfo[] {
-            new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.Image),
-            new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.HeaderControl),
-            new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.ContextButtons),
-            new DevExpress.XtraBars.Navigation.HeaderElementInfo(DevExpress.XtraBars.Navigation.HeaderElementType.Text, DevExpress.XtraBars.Navigation.HeaderElementAlignment.Right)});
             this.accordionControlElement3.ImageOptions.Image = ((System.Drawing.Image)(resources.GetObject("accordionControlElement3.ImageOptions.Image")));
             this.accordionControlElement3.Name = "accordionControlElement3";
             this.accordionControlElement3.Text = "Upload";
@@ -630,8 +587,6 @@
             this.Root.GroupBordersVisible = false;
             this.Root.Items.AddRange(new DevExpress.XtraLayout.BaseLayoutItem[] {
             this.layoutControlItem11,
-            this.Inside,
-            this.layoutControlItem10,
             this.layoutControlItem14,
             this.simpleSeparator1});
             this.Root.Name = "Root";
@@ -641,44 +596,25 @@
             // layoutControlItem11
             // 
             this.layoutControlItem11.Control = this.panelControl1;
-            this.layoutControlItem11.Location = new System.Drawing.Point(55, 0);
+            this.layoutControlItem11.Location = new System.Drawing.Point(102, 0);
             this.layoutControlItem11.Name = "layoutControlItem11";
-            this.layoutControlItem11.Size = new System.Drawing.Size(908, 315);
+            this.layoutControlItem11.Size = new System.Drawing.Size(861, 407);
             this.layoutControlItem11.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem11.TextVisible = false;
-            // 
-            // Inside
-            // 
-            this.Inside.Control = this.trackBarBGControl;
-            this.Inside.Location = new System.Drawing.Point(55, 315);
-            this.Inside.Name = "Inside";
-            this.Inside.Size = new System.Drawing.Size(908, 46);
-            this.Inside.Text = "Reduce";
-            this.Inside.TextSize = new System.Drawing.Size(0, 0);
-            this.Inside.TextVisible = false;
-            // 
-            // layoutControlItem10
-            // 
-            this.layoutControlItem10.Control = this.trackBarFGControl;
-            this.layoutControlItem10.Location = new System.Drawing.Point(55, 361);
-            this.layoutControlItem10.Name = "layoutControlItem10";
-            this.layoutControlItem10.Size = new System.Drawing.Size(908, 46);
-            this.layoutControlItem10.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem10.TextVisible = false;
             // 
             // layoutControlItem14
             // 
             this.layoutControlItem14.Control = this.accordionControl1;
             this.layoutControlItem14.Location = new System.Drawing.Point(0, 0);
             this.layoutControlItem14.Name = "layoutControlItem14";
-            this.layoutControlItem14.Size = new System.Drawing.Size(54, 407);
+            this.layoutControlItem14.Size = new System.Drawing.Size(101, 407);
             this.layoutControlItem14.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem14.TextVisible = false;
             // 
             // simpleSeparator1
             // 
             this.simpleSeparator1.AllowHotTrack = false;
-            this.simpleSeparator1.Location = new System.Drawing.Point(54, 0);
+            this.simpleSeparator1.Location = new System.Drawing.Point(101, 0);
             this.simpleSeparator1.Name = "simpleSeparator1";
             this.simpleSeparator1.Size = new System.Drawing.Size(1, 407);
             // 
@@ -703,14 +639,10 @@
             this.Load += new System.EventHandler(this.LMForm_Load);
             ((System.ComponentModel.ISupportInitialize)(this.backgroundlayoutControl)).EndInit();
             this.backgroundlayoutControl.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarFGControl.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarFGControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.panelControl1)).EndInit();
             this.panelControl1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.foregroundPictureBox.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.backgroundPictureBox.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarBGControl.Properties)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.trackBarBGControl)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.accordionControl1)).EndInit();
             this.accordionControl1.ResumeLayout(false);
             this.accordionContentContainer1.ResumeLayout(false);
@@ -746,8 +678,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem11)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Inside)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem14)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.simpleSeparator1)).EndInit();
             this.ResumeLayout(false);
@@ -758,12 +688,8 @@
 
         private DevExpress.XtraLayout.LayoutControl backgroundlayoutControl;
         private DevExpress.XtraLayout.LayoutControlGroup Root;
-        private DevExpress.XtraEditors.TrackBarControl trackBarBGControl;
-        private DevExpress.XtraLayout.LayoutControlItem Inside;
         private DevExpress.XtraEditors.PanelControl panelControl1;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem11;
-        private DevExpress.XtraEditors.TrackBarControl trackBarFGControl;
-        private DevExpress.XtraLayout.LayoutControlItem layoutControlItem10;
         private DevExpress.XtraBars.Navigation.AccordionControl accordionControl1;
         private DevExpress.XtraBars.Navigation.AccordionControlElement accordionControlElement1;
         private DevExpress.XtraBars.Navigation.AccordionControlSeparator accordionControlSeparator1;

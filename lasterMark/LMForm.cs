@@ -21,7 +21,7 @@
     {
         #region Fields
 
-        private readonly string currentPath = @"C:\Users\Administrator\Desktop\lasterMark\lasterMark\lasterMark\bin\Debug";
+        private readonly string currentPath = @"C:\Users\Lifebeget\source\repos\lasterMark\lasterMark\bin\Debug";
 
         private Image _ezdOriginalImage;
 
@@ -69,7 +69,7 @@
                 this.foregroundPictureBox.Parent = this.backgroundPictureBox;
 
                 // Connect sdk
-                var err = JczLmc.Initialize(this.currentPath, false);
+                var err = JczLmc.Initialize(this.currentPath, true);
 
                 this.backgroundPictureBox.MaximumSize = new Size(ClientRectangle.Width, ClientRectangle.Height);
                 this.foregroundPictureBox.MaximumSize = new Size(ClientRectangle.Width, ClientRectangle.Height);
@@ -123,41 +123,6 @@
         private void PictureBoxFG_DragEnter(object sender, DragEventArgs e)
         {
             e.Effect = DragDropEffects.Copy;
-        }
-
-        #endregion
-
-        #region Track
-
-        private void TrackBarBGControl_ValueChanged(object sender, EventArgs e)
-        {
-            if (this._bgOriginalImage != null)
-            {
-                if (this.scale_bg)
-                {
-                    this.backgroundPictureBox.Image = PictureControl.Scale(
-                        this._bgOriginalImage,
-                        new Size(this.trackBarBGControl.Value, this.trackBarBGControl.Value));
-                }
-                else
-                {
-                    this.backgroundPictureBox.Image = PictureControl.Zoom(
-                        this._bgOriginalImage,
-                        new Size(this.trackBarBGControl.Value, this.trackBarBGControl.Value));
-                }
-            }
-        }
-
-        private void TrackBarFGControl_ValueChanged(object sender, EventArgs e)
-        {
-            if (this._ezdOriginalImage != null)
-            {
-                this.foregroundPictureBox.Image = PictureControl.Scale(
-                    this._ezdOriginalImage,
-                    new Size(
-                        this._ezdOriginalImageMaxSize - this.trackBarFGControl.Value,
-                        this._ezdOriginalImageMaxSize - this.trackBarFGControl.Value));
-            }
         }
 
         #endregion
@@ -322,10 +287,6 @@
             this._ezdOriginalImageMaxSize = PictureControl.ColculateTrackBarMaxSize(
                 this.foregroundPictureBox.Width,
                 this.foregroundPictureBox.Height);
-
-            this.trackBarFGControl.Properties.Maximum = this._ezdOriginalImageMaxSize + 300;
-
-            this.trackBarFGControl.Value = this.trackBarFGControl.Properties.Maximum;
         }
 
         private void InitialBGImage()
@@ -333,10 +294,6 @@
             this._bgOriginalImageMaxSize = PictureControl.ColculateTrackBarMaxSize(
                 this.backgroundPictureBox.Width,
                 this.backgroundPictureBox.Height);
-
-            this.trackBarBGControl.Properties.Maximum = this._bgOriginalImageMaxSize;
-
-            this.trackBarBGControl.Value = 0;
         }
 
         private void LoadImage(string fileName)
