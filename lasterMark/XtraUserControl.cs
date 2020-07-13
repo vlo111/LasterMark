@@ -11,6 +11,8 @@ namespace lasterMark
     using System.Net;
     using System.Threading.Tasks;
 
+    using DevExpress.Utils.Extensions;
+
     using Newtonsoft.Json;
 
     public partial class XtraUserControl : DevExpress.XtraEditors.XtraUserControl
@@ -18,6 +20,10 @@ namespace lasterMark
         private readonly IList<Data> _data;
 
         private CompetitorListApi _competitorListApi;
+
+        // event true
+        // competitor false
+        private bool eventOrCompetitorSearch = true;
 
         public XtraUserControl(EventorApi api)
         {
@@ -48,7 +54,6 @@ namespace lasterMark
 
         private async Task<string> GetAllCompetitorsAsync(string url)
         {
-
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
 
             Task<WebResponse> task = Task.Factory.FromAsync(
@@ -65,32 +70,42 @@ namespace lasterMark
         {
             var data = (Data)this.listBoxControl1.SelectedItem;
 
-            var task = await this.GetAllCompetitorsAsync($@"http://openeventor.ru/api/event/{data.Token}/get_competitors");
+            if (data != null)
+            {
+                var task = await this.GetAllCompetitorsAsync(
+                               $@"http://openeventor.ru/api/event/{data.Token}/get_competitors");
 
-            this._competitorListApi = JsonConvert.DeserializeObject<CompetitorListApi>(task);
+                this._competitorListApi = JsonConvert.DeserializeObject<CompetitorListApi>(task);
 
-            this.listView1.Columns.AddRange(
-                new ColumnHeader[]
-                    {
-                        new ColumnHeader() { Text = @"Bib", Width = 50 },
-                        new ColumnHeader() { Text = @"First Name", Width = 150 },
-                        new ColumnHeader() { Text = @"Last Name", Width = 150 },
-                        new ColumnHeader() { Text = @"Birth year", Width = 100 }
-                    });
-
-            this._competitorListApi.Competitors.ForEach(
-                p =>
-                    {
-                        this.listView1.Items.Add(
-                            new ListViewItem(new[] { p.Bib, p.FirstName, p.LastName, p.BirthYear }));
-                    });
+                this.selectetEventLbl.Text = data.Text;
+            }
         }
 
         #region Searc event
 
         private void KeyBtns_Click(object sender, EventArgs e)
         {
-            this.EventKeyClick(sender);
+            if (this.eventOrCompetitorSearch)
+            {
+                this.EventKeyClick(sender);
+            }
+            else
+            {
+                var btn = (DevExpress.XtraEditors.SimpleButton)sender;
+                if (btn.Text == "<")
+                {
+                    if (string.IsNullOrEmpty(this.searchEventControl.Text))
+                    {
+                        return;
+                    }
+
+                    this.searchControlCompetitor.Text = this.searchControlCompetitor.Text.Remove(this.searchControlCompetitor.Text.Length - 1);
+                }
+                else
+                {
+                    this.searchControlCompetitor.Text = this.searchControlCompetitor.Text + btn.Text;
+                }
+            }
         }
 
         private void SearchControl_KeyPress(object sender, KeyPressEventArgs e)
@@ -103,21 +118,21 @@ namespace lasterMark
             var btn = (DevExpress.XtraEditors.SimpleButton)sender;
             if (btn.Text == "<")
             {
-                if (string.IsNullOrEmpty(this.searchControl.Text))
+                if (string.IsNullOrEmpty(this.searchEventControl.Text))
                 {
                     return;
                 }
 
-                this.searchControl.Text = this.searchControl.Text.Remove(this.searchControl.Text.Length - 1);
+                this.searchEventControl.Text = this.searchEventControl.Text.Remove(this.searchEventControl.Text.Length - 1);
             }
             else
             {
-                this.searchControl.Text = this.searchControl.Text + btn.Text;
+                this.searchEventControl.Text = this.searchEventControl.Text + btn.Text;
             }
 
             this.listBoxControl1.Items.Clear();
 
-            Data[] search = this._data.Where(p => p.Text.ToLower().Contains(this.searchControl.Text.Trim().ToLower()))
+            Data[] search = this._data.Where(p => p.Text.ToLower().Contains(this.searchEventControl.Text.Trim().ToLower()))
                 .ToArray();
 
             this.listBoxControl1.DataSource = search;
@@ -127,14 +142,14 @@ namespace lasterMark
         {
             if (e.KeyChar == 8)
             {
-                if (string.IsNullOrEmpty(this.searchControl.Text))
+                if (string.IsNullOrEmpty(this.searchEventControl.Text))
                 {
                     return;
                 }
 
                 var search = this._data.Where(
                         p => p.Text.ToLower().Contains(
-                            this.searchControl.Text.Remove(this.searchControl.Text.Length - 1).Trim().ToLower()))
+                            this.searchEventControl.Text.Remove(this.searchEventControl.Text.Length - 1).Trim().ToLower()))
                     .Select(p => p).ToArray();
 
                 this.listBoxControl1.Items.Clear();
@@ -145,7 +160,7 @@ namespace lasterMark
                 if ((e.KeyChar >= 'а' && e.KeyChar <= 'я') || (e.KeyChar >= 'А' && e.KeyChar <= 'Я'))
                 {
                     var search = this._data
-                        .Where(p => p.Text.ToLower().Contains(this.searchControl.Text.Trim().ToLower())).ToArray();
+                        .Where(p => p.Text.ToLower().Contains(this.searchEventControl.Text.Trim().ToLower())).ToArray();
 
                     this.listBoxControl1.Items.Clear();
                     this.listBoxControl1.DataSource = search;
@@ -154,5 +169,55 @@ namespace lasterMark
         }
 
         #endregion
+
+        private void GetCompetitorBtn_Click(object sender, EventArgs e)
+        {
+            var search = this.searchControlCompetitor.Text;
+
+            if (string.IsNullOrEmpty(search))
+            {
+                return;
+            }
+
+            this.listView1.Items.Clear();
+
+            this._competitorListApi.Competitors.Where(
+                p => p.Bib == search 
+                     || (p.FirstName != null && p.FirstName.ToLower().Contains(search.Trim().ToLower()))
+                     || (p.LastName != null && p.LastName.ToLower().Contains(search.Trim().ToLower()))
+                     || (p.BirthYear != null && p.BirthYear.ToLower().Contains(search.Trim().ToLower()))).ForEach(
+                p =>
+                    {
+                        this.listView1.Items.Add(
+                            new ListViewItem(new[] { p.Bib, p.FirstName, p.LastName, p.BirthYear }));
+                    });
+        }
+
+        private void XtraUserControl_Load(object sender, EventArgs e)
+        {
+            this.listView1.Columns.AddRange(
+                new ColumnHeader[]
+                    {
+                        new ColumnHeader() { Text = @"Bib", Width = 50 },
+                        new ColumnHeader() { Text = @"First Name", Width = 150 },
+                        new ColumnHeader() { Text = @"Last Name", Width = 150 },
+                        new ColumnHeader() { Text = @"Birth year", Width = 100 }
+                    });
+        }
+
+        private void ConfirmBtn_Click(object sender, EventArgs e)
+        {
+            var item = this.listView1.SelectedItems[0];
+        }
+
+        private void SearchEventControl_Enter(object sender, EventArgs e)
+        {
+            this.eventOrCompetitorSearch = true;
+        }
+
+        private void SearchControlCompetitor_Enter(object sender, EventArgs e)
+        {
+            this.eventOrCompetitorSearch = false;
+        }
     }
 }

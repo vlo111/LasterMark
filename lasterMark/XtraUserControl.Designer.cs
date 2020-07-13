@@ -31,9 +31,9 @@
         private void InitializeComponent()
         {
             this.layoutControl1 = new DevExpress.XtraLayout.LayoutControl();
-            this.searchControl1 = new DevExpress.XtraEditors.SearchControl();
-            this.simpleButton45 = new DevExpress.XtraEditors.SimpleButton();
-            this.simpleButton22 = new DevExpress.XtraEditors.SimpleButton();
+            this.searchControlCompetitor = new DevExpress.XtraEditors.SearchControl();
+            this.getCompetitorBtn = new DevExpress.XtraEditors.SimpleButton();
+            this.confirmBtn = new DevExpress.XtraEditors.SimpleButton();
             this.listView1 = new System.Windows.Forms.ListView();
             this.simpleButton21 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton53 = new DevExpress.XtraEditors.SimpleButton();
@@ -65,7 +65,7 @@
             this.simpleButton25 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton24 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton23 = new DevExpress.XtraEditors.SimpleButton();
-            this.backBtn = new DevExpress.XtraEditors.SimpleButton();
+            this.CancelBtn = new DevExpress.XtraEditors.SimpleButton();
             this.submitEventBtn = new DevExpress.XtraEditors.SimpleButton();
             this.listBoxControl1 = new DevExpress.XtraEditors.ListBoxControl();
             this.simpleButton20 = new DevExpress.XtraEditors.SimpleButton();
@@ -88,7 +88,7 @@
             this.simpleButton4 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton3 = new DevExpress.XtraEditors.SimpleButton();
             this.simpleButton2 = new DevExpress.XtraEditors.SimpleButton();
-            this.searchControl = new DevExpress.XtraEditors.SearchControl();
+            this.searchEventControl = new DevExpress.XtraEditors.SearchControl();
             this.Root = new DevExpress.XtraLayout.LayoutControlGroup();
             this.layoutControlItem3 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem4 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -113,8 +113,6 @@
             this.layoutControlItem21 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem22 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem23 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem7 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem25 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem26 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem27 = new DevExpress.XtraLayout.LayoutControlItem();
@@ -153,11 +151,14 @@
             this.layoutControlItem56 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem57 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem58 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
+            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
+            this.selectetEventLbl = new DevExpress.XtraLayout.SimpleLabelItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.searchControl1.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchControlCompetitor.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.listBoxControl1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchControl.Properties)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchEventControl.Properties)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).BeginInit();
@@ -182,8 +183,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem26)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem27)).BeginInit();
@@ -222,13 +221,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem56)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem57)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem58)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.selectetEventLbl)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
             // 
-            this.layoutControl1.Controls.Add(this.searchControl1);
-            this.layoutControl1.Controls.Add(this.simpleButton45);
-            this.layoutControl1.Controls.Add(this.simpleButton22);
+            this.layoutControl1.Controls.Add(this.searchControlCompetitor);
+            this.layoutControl1.Controls.Add(this.getCompetitorBtn);
+            this.layoutControl1.Controls.Add(this.confirmBtn);
             this.layoutControl1.Controls.Add(this.listView1);
             this.layoutControl1.Controls.Add(this.simpleButton21);
             this.layoutControl1.Controls.Add(this.simpleButton53);
@@ -260,7 +262,7 @@
             this.layoutControl1.Controls.Add(this.simpleButton25);
             this.layoutControl1.Controls.Add(this.simpleButton24);
             this.layoutControl1.Controls.Add(this.simpleButton23);
-            this.layoutControl1.Controls.Add(this.backBtn);
+            this.layoutControl1.Controls.Add(this.CancelBtn);
             this.layoutControl1.Controls.Add(this.submitEventBtn);
             this.layoutControl1.Controls.Add(this.listBoxControl1);
             this.layoutControl1.Controls.Add(this.simpleButton20);
@@ -283,7 +285,7 @@
             this.layoutControl1.Controls.Add(this.simpleButton4);
             this.layoutControl1.Controls.Add(this.simpleButton3);
             this.layoutControl1.Controls.Add(this.simpleButton2);
-            this.layoutControl1.Controls.Add(this.searchControl);
+            this.layoutControl1.Controls.Add(this.searchEventControl);
             this.layoutControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.layoutControl1.Location = new System.Drawing.Point(0, 0);
             this.layoutControl1.Name = "layoutControl1";
@@ -293,34 +295,40 @@
             this.layoutControl1.TabIndex = 0;
             this.layoutControl1.Text = "layoutControl1";
             // 
-            // searchControl1
+            // searchControlCompetitor
             // 
-            this.searchControl1.Location = new System.Drawing.Point(245, 231);
-            this.searchControl1.Name = "searchControl1";
-            this.searchControl1.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.searchControlCompetitor.Location = new System.Drawing.Point(245, 231);
+            this.searchControlCompetitor.Name = "searchControlCompetitor";
+            this.searchControlCompetitor.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Repository.ClearButton(),
             new DevExpress.XtraEditors.Repository.SearchButton()});
-            this.searchControl1.Size = new System.Drawing.Size(364, 32);
-            this.searchControl1.StyleController = this.layoutControl1;
-            this.searchControl1.TabIndex = 68;
+            this.searchControlCompetitor.Size = new System.Drawing.Size(364, 32);
+            this.searchControlCompetitor.StyleController = this.layoutControl1;
+            this.searchControlCompetitor.TabIndex = 68;
+            this.searchControlCompetitor.Enter += new System.EventHandler(this.SearchControlCompetitor_Enter);
             // 
-            // simpleButton45
+            // getCompetitorBtn
             // 
-            this.simpleButton45.Location = new System.Drawing.Point(346, 556);
-            this.simpleButton45.Name = "simpleButton45";
-            this.simpleButton45.Size = new System.Drawing.Size(130, 32);
-            this.simpleButton45.StyleController = this.layoutControl1;
-            this.simpleButton45.TabIndex = 67;
-            this.simpleButton45.Text = "Get";
+            this.getCompetitorBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.getCompetitorBtn.Location = new System.Drawing.Point(357, 556);
+            this.getCompetitorBtn.Name = "getCompetitorBtn";
+            this.getCompetitorBtn.Size = new System.Drawing.Size(90, 32);
+            this.getCompetitorBtn.StyleController = this.layoutControl1;
+            this.getCompetitorBtn.TabIndex = 67;
+            this.getCompetitorBtn.Text = "Get";
+            this.getCompetitorBtn.Click += new System.EventHandler(this.GetCompetitorBtn_Click);
             // 
-            // simpleButton22
+            // confirmBtn
             // 
-            this.simpleButton22.Location = new System.Drawing.Point(537, 556);
-            this.simpleButton22.Name = "simpleButton22";
-            this.simpleButton22.Size = new System.Drawing.Size(72, 32);
-            this.simpleButton22.StyleController = this.layoutControl1;
-            this.simpleButton22.TabIndex = 66;
-            this.simpleButton22.Text = "Confirm";
+            this.confirmBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.confirmBtn.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.confirmBtn.Location = new System.Drawing.Point(513, 556);
+            this.confirmBtn.Name = "confirmBtn";
+            this.confirmBtn.Size = new System.Drawing.Size(96, 32);
+            this.confirmBtn.StyleController = this.layoutControl1;
+            this.confirmBtn.TabIndex = 66;
+            this.confirmBtn.Text = "Confirm";
+            this.confirmBtn.Click += new System.EventHandler(this.ConfirmBtn_Click);
             // 
             // listView1
             // 
@@ -668,18 +676,18 @@
             this.simpleButton23.Text = "ш";
             this.simpleButton23.Click += new System.EventHandler(this.KeyBtns_Click);
             // 
-            // backBtn
+            // CancelBtn
             // 
-            this.backBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.backBtn.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.backBtn.Location = new System.Drawing.Point(12, 556);
-            this.backBtn.Name = "backBtn";
-            this.backBtn.Size = new System.Drawing.Size(163, 32);
-            this.backBtn.StyleController = this.layoutControl1;
-            this.backBtn.TabIndex = 29;
-            this.backBtn.Text = "Cancel";
+            this.CancelBtn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.CancelBtn.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.CancelBtn.Location = new System.Drawing.Point(12, 556);
+            this.CancelBtn.Name = "CancelBtn";
+            this.CancelBtn.Size = new System.Drawing.Size(114, 32);
+            this.CancelBtn.StyleController = this.layoutControl1;
+            this.CancelBtn.TabIndex = 29;
+            this.CancelBtn.Text = "Cancel";
             // 
-            // nextBtn
+            // submitEventBtn
             // 
             this.submitEventBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.submitEventBtn.Location = new System.Drawing.Point(776, 556);
@@ -692,10 +700,9 @@
             // 
             // listBoxControl1
             // 
-            this.listBoxControl1.Location = new System.Drawing.Point(613, 12);
-            this.listBoxControl1.MultiColumn = true;
+            this.listBoxControl1.Location = new System.Drawing.Point(613, 41);
             this.listBoxControl1.Name = "listBoxControl1";
-            this.listBoxControl1.Size = new System.Drawing.Size(275, 540);
+            this.listBoxControl1.Size = new System.Drawing.Size(275, 511);
             this.listBoxControl1.StyleController = this.layoutControl1;
             this.listBoxControl1.TabIndex = 27;
             // 
@@ -919,17 +926,18 @@
             this.simpleButton2.Text = "2";
             this.simpleButton2.Click += new System.EventHandler(this.KeyBtns_Click);
             // 
-            // searchControl
+            // searchEventControl
             // 
-            this.searchControl.Location = new System.Drawing.Point(245, 41);
-            this.searchControl.Name = "searchControl";
-            this.searchControl.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            this.searchEventControl.Location = new System.Drawing.Point(245, 41);
+            this.searchEventControl.Name = "searchEventControl";
+            this.searchEventControl.Properties.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
             new DevExpress.XtraEditors.Repository.ClearButton(),
             new DevExpress.XtraEditors.Repository.SearchButton()});
-            this.searchControl.Size = new System.Drawing.Size(364, 32);
-            this.searchControl.StyleController = this.layoutControl1;
-            this.searchControl.TabIndex = 6;
-            this.searchControl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SearchControl_KeyPress);
+            this.searchEventControl.Size = new System.Drawing.Size(364, 32);
+            this.searchEventControl.StyleController = this.layoutControl1;
+            this.searchEventControl.TabIndex = 6;
+            this.searchEventControl.Enter += new System.EventHandler(this.SearchEventControl_Enter);
+            this.searchEventControl.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.SearchControl_KeyPress);
             // 
             // Root
             // 
@@ -959,7 +967,6 @@
             this.layoutControlItem21,
             this.layoutControlItem22,
             this.layoutControlItem23,
-            this.emptySpaceItem7,
             this.layoutControlItem25,
             this.layoutControlItem26,
             this.layoutControlItem27,
@@ -998,7 +1005,9 @@
             this.layoutControlItem56,
             this.layoutControlItem57,
             this.layoutControlItem58,
-            this.layoutControlItem24});
+            this.layoutControlItem24,
+            this.emptySpaceItem2,
+            this.selectetEventLbl});
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(900, 600);
             this.Root.TextVisible = false;
@@ -1009,7 +1018,7 @@
             this.layoutControlItem3.AppearanceItemCaption.ForeColor = System.Drawing.Color.White;
             this.layoutControlItem3.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem3.AppearanceItemCaption.Options.UseForeColor = true;
-            this.layoutControlItem3.Control = this.searchControl;
+            this.layoutControlItem3.Control = this.searchEventControl;
             this.layoutControlItem3.Location = new System.Drawing.Point(0, 29);
             this.layoutControlItem3.Name = "layoutControlItem3";
             this.layoutControlItem3.Size = new System.Drawing.Size(601, 36);
@@ -1199,9 +1208,9 @@
             // layoutControlItem22
             // 
             this.layoutControlItem22.Control = this.listBoxControl1;
-            this.layoutControlItem22.Location = new System.Drawing.Point(601, 0);
+            this.layoutControlItem22.Location = new System.Drawing.Point(601, 29);
             this.layoutControlItem22.Name = "layoutControlItem22";
-            this.layoutControlItem22.Size = new System.Drawing.Size(279, 544);
+            this.layoutControlItem22.Size = new System.Drawing.Size(279, 515);
             this.layoutControlItem22.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem22.TextVisible = false;
             // 
@@ -1213,23 +1222,6 @@
             this.layoutControlItem23.Size = new System.Drawing.Size(116, 36);
             this.layoutControlItem23.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem23.TextVisible = false;
-            // 
-            // layoutControlItem24
-            // 
-            this.layoutControlItem24.Control = this.backBtn;
-            this.layoutControlItem24.Location = new System.Drawing.Point(0, 544);
-            this.layoutControlItem24.Name = "layoutControlItem24";
-            this.layoutControlItem24.Size = new System.Drawing.Size(167, 36);
-            this.layoutControlItem24.TextSize = new System.Drawing.Size(0, 0);
-            this.layoutControlItem24.TextVisible = false;
-            // 
-            // emptySpaceItem7
-            // 
-            this.emptySpaceItem7.AllowHotTrack = false;
-            this.emptySpaceItem7.Location = new System.Drawing.Point(601, 544);
-            this.emptySpaceItem7.Name = "emptySpaceItem7";
-            this.emptySpaceItem7.Size = new System.Drawing.Size(163, 36);
-            this.emptySpaceItem7.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem25
             // 
@@ -1536,34 +1528,34 @@
             // emptySpaceItem4
             // 
             this.emptySpaceItem4.AllowHotTrack = false;
-            this.emptySpaceItem4.Location = new System.Drawing.Point(468, 544);
+            this.emptySpaceItem4.Location = new System.Drawing.Point(439, 544);
             this.emptySpaceItem4.Name = "emptySpaceItem4";
-            this.emptySpaceItem4.Size = new System.Drawing.Size(57, 36);
+            this.emptySpaceItem4.Size = new System.Drawing.Size(62, 36);
             this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
             // 
             // emptySpaceItem5
             // 
             this.emptySpaceItem5.AllowHotTrack = false;
-            this.emptySpaceItem5.Location = new System.Drawing.Point(167, 544);
+            this.emptySpaceItem5.Location = new System.Drawing.Point(118, 544);
             this.emptySpaceItem5.Name = "emptySpaceItem5";
-            this.emptySpaceItem5.Size = new System.Drawing.Size(167, 36);
+            this.emptySpaceItem5.Size = new System.Drawing.Size(227, 36);
             this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
             // 
             // layoutControlItem56
             // 
-            this.layoutControlItem56.Control = this.simpleButton22;
-            this.layoutControlItem56.Location = new System.Drawing.Point(525, 544);
+            this.layoutControlItem56.Control = this.confirmBtn;
+            this.layoutControlItem56.Location = new System.Drawing.Point(501, 544);
             this.layoutControlItem56.Name = "layoutControlItem56";
-            this.layoutControlItem56.Size = new System.Drawing.Size(76, 36);
+            this.layoutControlItem56.Size = new System.Drawing.Size(100, 36);
             this.layoutControlItem56.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem56.TextVisible = false;
             // 
             // layoutControlItem57
             // 
-            this.layoutControlItem57.Control = this.simpleButton45;
-            this.layoutControlItem57.Location = new System.Drawing.Point(334, 544);
+            this.layoutControlItem57.Control = this.getCompetitorBtn;
+            this.layoutControlItem57.Location = new System.Drawing.Point(345, 544);
             this.layoutControlItem57.Name = "layoutControlItem57";
-            this.layoutControlItem57.Size = new System.Drawing.Size(134, 36);
+            this.layoutControlItem57.Size = new System.Drawing.Size(94, 36);
             this.layoutControlItem57.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem57.TextVisible = false;
             // 
@@ -1573,12 +1565,44 @@
             this.layoutControlItem58.AppearanceItemCaption.ForeColor = System.Drawing.Color.White;
             this.layoutControlItem58.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem58.AppearanceItemCaption.Options.UseForeColor = true;
-            this.layoutControlItem58.Control = this.searchControl1;
+            this.layoutControlItem58.Control = this.searchControlCompetitor;
             this.layoutControlItem58.Location = new System.Drawing.Point(0, 219);
             this.layoutControlItem58.Name = "layoutControlItem58";
             this.layoutControlItem58.Size = new System.Drawing.Size(601, 36);
             this.layoutControlItem58.Text = "Competitor";
             this.layoutControlItem58.TextSize = new System.Drawing.Size(230, 16);
+            // 
+            // layoutControlItem24
+            // 
+            this.layoutControlItem24.Control = this.CancelBtn;
+            this.layoutControlItem24.Location = new System.Drawing.Point(0, 544);
+            this.layoutControlItem24.Name = "layoutControlItem24";
+            this.layoutControlItem24.Size = new System.Drawing.Size(118, 36);
+            this.layoutControlItem24.TextSize = new System.Drawing.Size(0, 0);
+            this.layoutControlItem24.TextVisible = false;
+            // 
+            // emptySpaceItem2
+            // 
+            this.emptySpaceItem2.AllowHotTrack = false;
+            this.emptySpaceItem2.Location = new System.Drawing.Point(601, 544);
+            this.emptySpaceItem2.Name = "emptySpaceItem2";
+            this.emptySpaceItem2.Size = new System.Drawing.Size(163, 36);
+            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
+            // 
+            // selectetEventLbl
+            // 
+            this.selectetEventLbl.AllowHotTrack = false;
+            this.selectetEventLbl.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.selectetEventLbl.AppearanceItemCaption.ForeColor = System.Drawing.Color.White;
+            this.selectetEventLbl.AppearanceItemCaption.Options.UseFont = true;
+            this.selectetEventLbl.AppearanceItemCaption.Options.UseForeColor = true;
+            this.selectetEventLbl.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.selectetEventLbl.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.selectetEventLbl.Location = new System.Drawing.Point(601, 0);
+            this.selectetEventLbl.Name = "selectetEventLbl";
+            this.selectetEventLbl.Size = new System.Drawing.Size(279, 29);
+            this.selectetEventLbl.Text = "Event";
+            this.selectetEventLbl.TextSize = new System.Drawing.Size(230, 16);
             // 
             // XtraUserControl
             // 
@@ -1589,11 +1613,12 @@
             this.Controls.Add(this.layoutControl1);
             this.Name = "XtraUserControl";
             this.Size = new System.Drawing.Size(900, 600);
+            this.Load += new System.EventHandler(this.XtraUserControl_Load);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).EndInit();
             this.layoutControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.searchControl1.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchControlCompetitor.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.listBoxControl1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.searchControl.Properties)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.searchEventControl.Properties)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Root)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem4)).EndInit();
@@ -1618,8 +1643,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem21)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem22)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem23)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem25)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem26)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem27)).EndInit();
@@ -1658,6 +1681,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem56)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem57)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem58)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.selectetEventLbl)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1672,7 +1698,7 @@
         private DevExpress.XtraEditors.SimpleButton simpleButton4;
         private DevExpress.XtraEditors.SimpleButton simpleButton3;
         private DevExpress.XtraEditors.SimpleButton simpleButton2;
-        private DevExpress.XtraEditors.SearchControl searchControl;
+        private DevExpress.XtraEditors.SearchControl searchEventControl;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem3;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem4;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem5;
@@ -1700,7 +1726,7 @@
         private DevExpress.XtraEditors.SimpleButton simpleButton25;
         private DevExpress.XtraEditors.SimpleButton simpleButton24;
         private DevExpress.XtraEditors.SimpleButton simpleButton23;
-        private DevExpress.XtraEditors.SimpleButton backBtn;
+        private DevExpress.XtraEditors.SimpleButton CancelBtn;
         private DevExpress.XtraEditors.SimpleButton submitEventBtn;
         private DevExpress.XtraEditors.ListBoxControl listBoxControl1;
         private DevExpress.XtraEditors.SimpleButton simpleButton20;
@@ -1720,7 +1746,6 @@
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem22;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem23;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem24;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem7;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem25;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem26;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem27;
@@ -1779,13 +1804,15 @@
         private DevExpress.XtraLayout.SimpleLabelItem searchLabel;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem48;
         private ListView listView1;
-        private DevExpress.XtraEditors.SearchControl searchControl1;
-        private DevExpress.XtraEditors.SimpleButton simpleButton45;
-        private DevExpress.XtraEditors.SimpleButton simpleButton22;
+        private DevExpress.XtraEditors.SearchControl searchControlCompetitor;
+        private DevExpress.XtraEditors.SimpleButton getCompetitorBtn;
+        private DevExpress.XtraEditors.SimpleButton confirmBtn;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
         private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem5;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem56;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem57;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem58;
+        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
+        private DevExpress.XtraLayout.SimpleLabelItem selectetEventLbl;
     }
 }
