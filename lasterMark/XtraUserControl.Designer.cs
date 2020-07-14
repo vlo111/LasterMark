@@ -146,14 +146,12 @@
             this.layoutControlItem47 = new DevExpress.XtraLayout.LayoutControlItem();
             this.searchLabel = new DevExpress.XtraLayout.SimpleLabelItem();
             this.layoutControlItem48 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem4 = new DevExpress.XtraLayout.EmptySpaceItem();
-            this.emptySpaceItem5 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.layoutControlItem56 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem57 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem58 = new DevExpress.XtraLayout.LayoutControlItem();
             this.layoutControlItem24 = new DevExpress.XtraLayout.LayoutControlItem();
-            this.emptySpaceItem2 = new DevExpress.XtraLayout.EmptySpaceItem();
             this.selectetEventLbl = new DevExpress.XtraLayout.SimpleLabelItem();
+            this.errorLabel = new DevExpress.XtraLayout.SimpleLabelItem();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl1)).BeginInit();
             this.layoutControl1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.searchControlCompetitor.Properties)).BeginInit();
@@ -216,14 +214,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem47)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLabel)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem48)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem56)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem57)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem58)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.selectetEventLbl)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorLabel)).BeginInit();
             this.SuspendLayout();
             // 
             // layoutControl1
@@ -310,9 +306,9 @@
             // getCompetitorBtn
             // 
             this.getCompetitorBtn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.getCompetitorBtn.Location = new System.Drawing.Point(357, 556);
+            this.getCompetitorBtn.Location = new System.Drawing.Point(130, 556);
             this.getCompetitorBtn.Name = "getCompetitorBtn";
-            this.getCompetitorBtn.Size = new System.Drawing.Size(90, 32);
+            this.getCompetitorBtn.Size = new System.Drawing.Size(115, 32);
             this.getCompetitorBtn.StyleController = this.layoutControl1;
             this.getCompetitorBtn.TabIndex = 67;
             this.getCompetitorBtn.Text = "Get";
@@ -322,9 +318,9 @@
             // 
             this.confirmBtn.Cursor = System.Windows.Forms.Cursors.Hand;
             this.confirmBtn.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.confirmBtn.Location = new System.Drawing.Point(513, 556);
+            this.confirmBtn.Location = new System.Drawing.Point(249, 556);
             this.confirmBtn.Name = "confirmBtn";
-            this.confirmBtn.Size = new System.Drawing.Size(96, 32);
+            this.confirmBtn.Size = new System.Drawing.Size(113, 32);
             this.confirmBtn.StyleController = this.layoutControl1;
             this.confirmBtn.TabIndex = 66;
             this.confirmBtn.Text = "Confirm";
@@ -1000,14 +996,12 @@
             this.layoutControlItem47,
             this.searchLabel,
             this.layoutControlItem48,
-            this.emptySpaceItem4,
-            this.emptySpaceItem5,
-            this.layoutControlItem56,
-            this.layoutControlItem57,
             this.layoutControlItem58,
             this.layoutControlItem24,
-            this.emptySpaceItem2,
-            this.selectetEventLbl});
+            this.selectetEventLbl,
+            this.layoutControlItem57,
+            this.layoutControlItem56,
+            this.errorLabel});
             this.Root.Name = "Root";
             this.Root.Size = new System.Drawing.Size(900, 600);
             this.Root.TextVisible = false;
@@ -1015,7 +1009,7 @@
             // layoutControlItem3
             // 
             this.layoutControlItem3.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.layoutControlItem3.AppearanceItemCaption.ForeColor = System.Drawing.Color.White;
+            this.layoutControlItem3.AppearanceItemCaption.ForeColor = System.Drawing.Color.Transparent;
             this.layoutControlItem3.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem3.AppearanceItemCaption.Options.UseForeColor = true;
             this.layoutControlItem3.Control = this.searchEventControl;
@@ -1505,7 +1499,7 @@
             // 
             this.searchLabel.AllowHotTrack = false;
             this.searchLabel.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.searchLabel.AppearanceItemCaption.ForeColor = System.Drawing.Color.White;
+            this.searchLabel.AppearanceItemCaption.ForeColor = System.Drawing.Color.DodgerBlue;
             this.searchLabel.AppearanceItemCaption.Options.UseFont = true;
             this.searchLabel.AppearanceItemCaption.Options.UseForeColor = true;
             this.searchLabel.AppearanceItemCaption.Options.UseTextOptions = true;
@@ -1525,44 +1519,28 @@
             this.layoutControlItem48.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem48.TextVisible = false;
             // 
-            // emptySpaceItem4
-            // 
-            this.emptySpaceItem4.AllowHotTrack = false;
-            this.emptySpaceItem4.Location = new System.Drawing.Point(439, 544);
-            this.emptySpaceItem4.Name = "emptySpaceItem4";
-            this.emptySpaceItem4.Size = new System.Drawing.Size(62, 36);
-            this.emptySpaceItem4.TextSize = new System.Drawing.Size(0, 0);
-            // 
-            // emptySpaceItem5
-            // 
-            this.emptySpaceItem5.AllowHotTrack = false;
-            this.emptySpaceItem5.Location = new System.Drawing.Point(118, 544);
-            this.emptySpaceItem5.Name = "emptySpaceItem5";
-            this.emptySpaceItem5.Size = new System.Drawing.Size(227, 36);
-            this.emptySpaceItem5.TextSize = new System.Drawing.Size(0, 0);
-            // 
             // layoutControlItem56
             // 
             this.layoutControlItem56.Control = this.confirmBtn;
-            this.layoutControlItem56.Location = new System.Drawing.Point(501, 544);
+            this.layoutControlItem56.Location = new System.Drawing.Point(237, 544);
             this.layoutControlItem56.Name = "layoutControlItem56";
-            this.layoutControlItem56.Size = new System.Drawing.Size(100, 36);
+            this.layoutControlItem56.Size = new System.Drawing.Size(117, 36);
             this.layoutControlItem56.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem56.TextVisible = false;
             // 
             // layoutControlItem57
             // 
             this.layoutControlItem57.Control = this.getCompetitorBtn;
-            this.layoutControlItem57.Location = new System.Drawing.Point(345, 544);
+            this.layoutControlItem57.Location = new System.Drawing.Point(118, 544);
             this.layoutControlItem57.Name = "layoutControlItem57";
-            this.layoutControlItem57.Size = new System.Drawing.Size(94, 36);
+            this.layoutControlItem57.Size = new System.Drawing.Size(119, 36);
             this.layoutControlItem57.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem57.TextVisible = false;
             // 
             // layoutControlItem58
             // 
             this.layoutControlItem58.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.layoutControlItem58.AppearanceItemCaption.ForeColor = System.Drawing.Color.White;
+            this.layoutControlItem58.AppearanceItemCaption.ForeColor = System.Drawing.Color.Black;
             this.layoutControlItem58.AppearanceItemCaption.Options.UseFont = true;
             this.layoutControlItem58.AppearanceItemCaption.Options.UseForeColor = true;
             this.layoutControlItem58.Control = this.searchControlCompetitor;
@@ -1581,19 +1559,11 @@
             this.layoutControlItem24.TextSize = new System.Drawing.Size(0, 0);
             this.layoutControlItem24.TextVisible = false;
             // 
-            // emptySpaceItem2
-            // 
-            this.emptySpaceItem2.AllowHotTrack = false;
-            this.emptySpaceItem2.Location = new System.Drawing.Point(601, 544);
-            this.emptySpaceItem2.Name = "emptySpaceItem2";
-            this.emptySpaceItem2.Size = new System.Drawing.Size(163, 36);
-            this.emptySpaceItem2.TextSize = new System.Drawing.Size(0, 0);
-            // 
             // selectetEventLbl
             // 
             this.selectetEventLbl.AllowHotTrack = false;
             this.selectetEventLbl.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.selectetEventLbl.AppearanceItemCaption.ForeColor = System.Drawing.Color.White;
+            this.selectetEventLbl.AppearanceItemCaption.ForeColor = System.Drawing.Color.DodgerBlue;
             this.selectetEventLbl.AppearanceItemCaption.Options.UseFont = true;
             this.selectetEventLbl.AppearanceItemCaption.Options.UseForeColor = true;
             this.selectetEventLbl.AppearanceItemCaption.Options.UseTextOptions = true;
@@ -1604,9 +1574,24 @@
             this.selectetEventLbl.Text = "Event";
             this.selectetEventLbl.TextSize = new System.Drawing.Size(230, 16);
             // 
+            // errorLabel
+            // 
+            this.errorLabel.AllowHotTrack = false;
+            this.errorLabel.AppearanceItemCaption.Font = new System.Drawing.Font("Tahoma", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.errorLabel.AppearanceItemCaption.ForeColor = System.Drawing.Color.Tomato;
+            this.errorLabel.AppearanceItemCaption.Options.UseFont = true;
+            this.errorLabel.AppearanceItemCaption.Options.UseForeColor = true;
+            this.errorLabel.AppearanceItemCaption.Options.UseTextOptions = true;
+            this.errorLabel.AppearanceItemCaption.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.errorLabel.Location = new System.Drawing.Point(354, 544);
+            this.errorLabel.Name = "errorLabel";
+            this.errorLabel.Size = new System.Drawing.Size(410, 36);
+            this.errorLabel.Text = " ";
+            this.errorLabel.TextSize = new System.Drawing.Size(230, 14);
+            // 
             // XtraUserControl
             // 
-            this.Appearance.BackColor = System.Drawing.Color.SteelBlue;
+            this.Appearance.BackColor = System.Drawing.Color.MintCream;
             this.Appearance.Options.UseBackColor = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -1676,14 +1661,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem47)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.searchLabel)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem48)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem56)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem57)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem58)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.layoutControlItem24)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.emptySpaceItem2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.selectetEventLbl)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorLabel)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1807,12 +1790,10 @@
         private DevExpress.XtraEditors.SearchControl searchControlCompetitor;
         private DevExpress.XtraEditors.SimpleButton getCompetitorBtn;
         private DevExpress.XtraEditors.SimpleButton confirmBtn;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem4;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem5;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem56;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem57;
         private DevExpress.XtraLayout.LayoutControlItem layoutControlItem58;
-        private DevExpress.XtraLayout.EmptySpaceItem emptySpaceItem2;
         private DevExpress.XtraLayout.SimpleLabelItem selectetEventLbl;
+        private DevExpress.XtraLayout.SimpleLabelItem errorLabel;
     }
 }

@@ -1,25 +1,30 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Windows.Forms;
-
-using lasterMark.ApiModel;
-
-namespace lasterMark
+﻿namespace lasterMark
 {
+    using System;
+    using System.Collections.Generic;
     using System.IO;
+    using System.Linq;
     using System.Net;
     using System.Threading.Tasks;
+    using System.Windows.Forms;
 
     using DevExpress.Utils.Extensions;
 
+    using lasterMark.Api;
+    using lasterMark.ApiModel;
+
     using Newtonsoft.Json;
 
+    /// <summary>
+    /// The xtra user control.
+    /// </summary>
     public partial class XtraUserControl : DevExpress.XtraEditors.XtraUserControl
     {
         private readonly IList<Data> _data;
 
         private CompetitorListApi _competitorListApi;
+
+        private IList<CompetitorApi> _searchedCompetitorListApi;
 
         // event true
         // competitor false
@@ -38,41 +43,13 @@ namespace lasterMark
             }
         }
 
-        #region Get all Competitors
-
-        private static string ReadStreamFromResponse(WebResponse response)
-        {
-            using (Stream responseStream = response.GetResponseStream())
-            {
-                using (StreamReader sr = new StreamReader(responseStream ?? throw new InvalidOperationException()))
-                {
-                    string strContent = sr.ReadToEnd();
-                    return strContent;
-                }
-            }
-        }
-
-        private async Task<string> GetAllCompetitorsAsync(string url)
-        {
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
-
-            Task<WebResponse> task = Task.Factory.FromAsync(
-                request.BeginGetResponse,
-                asyncResult => request.EndGetResponse(asyncResult),
-                (object)null);
-
-            return await task.ContinueWith(t => ReadStreamFromResponse(t.Result));
-        }
-
-        #endregion
-
         private async void SubmitEventBtn_Click(object sender, EventArgs e)
         {
             var data = (Data)this.listBoxControl1.SelectedItem;
 
             if (data != null)
             {
-                var task = await this.GetAllCompetitorsAsync(
+                var task = await RequestData.GetRequestAsync(
                                $@"http://openeventor.ru/api/event/{data.Token}/get_competitors");
 
                 this._competitorListApi = JsonConvert.DeserializeObject<CompetitorListApi>(task);
@@ -181,16 +158,35 @@ namespace lasterMark
 
             this.listView1.Items.Clear();
 
-            this._competitorListApi.Competitors.Where(
-                p => p.Bib == search 
-                     || (p.FirstName != null && p.FirstName.ToLower().Contains(search.Trim().ToLower()))
-                     || (p.LastName != null && p.LastName.ToLower().Contains(search.Trim().ToLower()))
-                     || (p.BirthYear != null && p.BirthYear.ToLower().Contains(search.Trim().ToLower()))).ForEach(
-                p =>
-                    {
-                        this.listView1.Items.Add(
-                            new ListViewItem(new[] { p.Bib, p.FirstName, p.LastName, p.BirthYear }));
-                    });
+            if (this._competitorListApi.Competitors == null)
+            {
+                this.errorLabel.Text = $@"Вам придется повторить попытку(Competitor is null)";
+            }
+            else
+            {
+                var listItem = new List<ListViewItem>();
+
+                var competitors = this._competitorListApi.Competitors.Where(
+                    p => p.Bib == search
+                         || (p.FirstName != null && p.FirstName.ToLower().Contains(search.Trim().ToLower()))
+                         || (p.LastName != null && p.LastName.ToLower().Contains(search.Trim().ToLower()))
+                         || (p.BirthYear != null && p.BirthYear.ToLower().Contains(search.Trim().ToLower())));
+
+                this._searchedCompetitorListApi = competitors.ToList();
+
+                this._searchedCompetitorListApi.ForEach(
+                   p =>
+                       {
+                           listItem.Add(new ListViewItem(new[] { p.Bib, p.FirstName, p.LastName, p.BirthYear }));
+                       });
+
+                this.listView1.Items.AddRange(listItem.ToArray());
+
+                if (this.listView1.Items.Count <= 0)
+                {
+                    this.errorLabel.Text = $@"Info: Поиск не дал результатов";
+                }
+            }
         }
 
         private void XtraUserControl_Load(object sender, EventArgs e)
@@ -208,6 +204,8 @@ namespace lasterMark
         private void ConfirmBtn_Click(object sender, EventArgs e)
         {
             var item = this.listView1.SelectedItems[0];
+
+            LMForm.Competitor = this._searchedCompetitorListApi.FirstOrDefault(p => p.Bib == item.Text);
         }
 
         private void SearchEventControl_Enter(object sender, EventArgs e)

@@ -7,9 +7,9 @@
     using System.Net;
     using System.Windows.Forms;
 
-    using DevExpress.Utils.Extensions;
     using DevExpress.XtraEditors;
 
+    using lasterMark.Api;
     using lasterMark.ApiModel;
 
     using Newtonsoft.Json;
@@ -21,7 +21,10 @@
     {
         #region Fields
 
-        private readonly string currentPath = @"C:\Users\Lifebeget\source\repos\lasterMark\lasterMark\bin\Debug";
+        public static CompetitorApi Competitor;
+
+        // @"C:\Users\Lifebeget\source\repos\lasterMark\lasterMark\bin\Debug";
+        private readonly string currentPath = Application.StartupPath;
 
         private Image _ezdOriginalImage;
 
@@ -87,8 +90,6 @@
 
         #endregion
 
-        #region Events
-
         #region Upload file
 
         private void EZDFileUpload_Click(object sender, EventArgs e)
@@ -136,63 +137,55 @@
             // showForm.Show();
         }
 
-        private void LogInBtn_Click(object sender, EventArgs e)
+        private async void LogInBtn_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(this.loginInput.Text))
+            if (this._ezdOriginalImage != null)
             {
-                XtraMessageBox.Show(
-                    "The login and password field is required, please enter login",
-                    "Warning",
-                    MessageBoxButtons.OK);
-            }
-            else if (string.IsNullOrEmpty(this.passwordInput.Text))
-            {
-                XtraMessageBox.Show(
-                    "The login and password field is required, please enter password",
-                    "Warning",
-                    MessageBoxButtons.OK);
+                var first_name = JczLmc.GetEntityNameByIndex(0);
+
+                if (string.IsNullOrEmpty(first_name))
+                {
+                    XtraMessageBox.Show(
+                        "Пожалуйста, выберите соответствующий ezd файл, для изменение например таких полей:(first_name, last_name, time_on_distance, distance_name)",
+                        "Error",
+                        MessageBoxButtons.OK);
+                }
+                else
+                {
+                    if (string.IsNullOrEmpty(this.loginInput.Text))
+                    {
+                        XtraMessageBox.Show(
+                            "The login and password field is required, please enter login",
+                            "Warning",
+                            MessageBoxButtons.OK);
+                    }
+                    else if (string.IsNullOrEmpty(this.passwordInput.Text))
+                    {
+                        XtraMessageBox.Show(
+                            "The login and password field is required, please enter password",
+                            "Warning",
+                            MessageBoxButtons.OK);
+                    }
+                    else
+                    {
+                        var base64HeaderValue = Convert.ToBase64String(
+                            System.Text.Encoding.UTF8.GetBytes("ya@lenev.ru:poster86"));
+
+                        const string Url = @"http://openeventor.ru/api/get_events";
+
+                        var task = await RequestData.GetAllEventsAsync(Url, base64HeaderValue);
+
+                        var result = JsonConvert.DeserializeObject<EventorApi>(task);
+
+                        CustomFlyoutDialog.ShowForm(this, null, new XtraUserControl(result));
+
+                        this.UpdateImage();
+                    }
+                }
             }
             else
             {
-                // var base64HeaderValue = Convert.ToBase64String(
-                // System.Text.Encoding.UTF8.GetBytes($@"{this.loginInput.Text}:{this.passwordInput.Text}"));
-                var base64HeaderValue = Convert.ToBase64String(
-                    System.Text.Encoding.UTF8.GetBytes("ya@lenev.ru:poster86"));
-
-                var uri = @"http://openeventor.ru/api/get_events";
-
-                // Create a request for the URL.
-                var request = WebRequest.Create(uri);
-
-                // If required by the server, set the credentials.
-                request.Credentials = CredentialCache.DefaultCredentials;
-
-                EventorApi result = new EventorApi();
-
-                request.Headers["Authorization"] = base64HeaderValue;
-
-                using (var response = request.GetResponse())
-                {
-                    var status = ((HttpWebResponse)response).StatusDescription;
-
-                    // Get the stream containing content returned by the server.
-                    // The using block ensures the stream is automatically closed.
-                    using (Stream dataStream = response.GetResponseStream())
-                    {
-                        // Open the stream using a StreamReader for easy access.
-                        StreamReader reader = new StreamReader(dataStream ?? throw new InvalidOperationException());
-
-                        // Read the content.
-                        string responseFromServer = reader.ReadToEnd();
-
-                        // the content response.
-                        result = JsonConvert.DeserializeObject<EventorApi>(responseFromServer);
-                    }
-                }
-
-                CustomFlyoutDialog.ShowForm(this, null, new XtraUserControl(result));
-
-
+                XtraMessageBox.Show("Пожалуйста, выберите ezd файл", "Error", MessageBoxButtons.OK);
             }
         }
 
@@ -212,7 +205,71 @@
             }
         }
 
-        #endregion
+        private async void SubmitUrl_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (this._ezdOriginalImage != null)
+                {
+                    var first_name = JczLmc.GetEntityNameByIndex(0);
+
+                    if (string.IsNullOrEmpty(first_name))
+                    {
+                        XtraMessageBox.Show(
+                            "Пожалуйста, выберите соответствующий ezd файл, для изменение например таких полей:(first_name, last_name, time_on_distance, distance_name)",
+                            "Error",
+                            MessageBoxButtons.OK);
+                    }
+                    else
+                    {
+                        var url =
+                            @"http://openeventor.ru/api/event/262a9ea6af4e459c92656a62b3db5cb4/engraver/get?bib=123";
+
+                        var task = await RequestData.GetRequestAsync(url);
+
+                        var result = JsonConvert.DeserializeObject<CurrentCompotitorApi>(task);
+
+                        var firstObj = JczLmc.GetEntityNameByIndex(0);
+
+                        var secondObj= JczLmc.GetEntityNameByIndex(1);
+
+                        var thirdObj= JczLmc.GetEntityNameByIndex(2);
+
+                        var lastObj = JczLmc.GetEntityNameByIndex(3);
+
+                        if (!string.IsNullOrEmpty(result.Competitor.FirstName))
+                        {
+                            JczLmc.ChangeTextByName(firstObj, result.Competitor.FirstName);
+                        }
+
+                        if (!string.IsNullOrEmpty(result.Competitor.FirstName))
+                        {
+                            JczLmc.ChangeTextByName(secondObj, result.Competitor.LastName);
+                        }
+
+                        if (!string.IsNullOrEmpty(result.Competitor.TimeOfDistance))
+                        {
+                            JczLmc.ChangeTextByName(thirdObj, result.Competitor.TimeOfDistance);
+                        }
+
+                        if (!string.IsNullOrEmpty(result.Competitor.Distance))
+                        {
+                            JczLmc.ChangeTextByName(lastObj, result.Competitor.Distance);
+                        }
+
+                        this.foregroundPictureBox.Image = JczLmc.GetCurPreviewImage(this.foregroundPictureBox.Width, this.foregroundPictureBox.Height);
+                    }
+                }
+                else
+                {
+                    XtraMessageBox.Show("Пожалуйста, выберите ezd файл", "Error", MessageBoxButtons.OK);
+                }
+            }
+            catch (Exception exception)
+            {
+                XtraMessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK);
+            }
+        }
 
         private void Upload(UploadType type)
         {
@@ -244,7 +301,7 @@
                         if (img.Width > ClientRectangle.Width)
                         {
                             var residue = img.Width - ClientRectangle.Width;
-                                
+
                             int percent = (int)(decimal.Divide(residue, img.Width) * 100);
 
                             img = PictureControl.Scale(img, new Size(percent, percent));
@@ -302,9 +359,7 @@
             JczLmc.LoadEzdFile(fileName);
 
             // get image from sdk
-            var img = JczLmc.GetCurPreviewImage(
-                this.foregroundPictureBox.Width,
-                this.foregroundPictureBox.Height);
+            var img = JczLmc.GetCurPreviewImage(this.foregroundPictureBox.Width, this.foregroundPictureBox.Height);
 
             // convert to bitmap for rransparent
             var bitMap = (Bitmap)img;
@@ -321,6 +376,15 @@
             this.InitialFGImage();
 
             this.ezdFileLbl.Text = Path.GetFileName(fileName);
+        }
+
+        private void UpdateImage()
+        {
+            if (Competitor != null)
+            {
+            }
+
+            Competitor = null;
         }
     }
 }

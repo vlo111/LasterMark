@@ -66,6 +66,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ApiModel\CurrentCompotitorApi.cs" />
+    <Compile Include="Api\RequestData.cs" />
     <Compile Include="CustomFlyoutDialog.cs">
       <SubType>Form</SubType>
     </Compile>
