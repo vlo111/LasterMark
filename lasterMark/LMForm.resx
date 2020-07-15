@@ -176,7 +176,7 @@
   <data name="accordionControlElement1.ImageOptions.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAJcEhZcwAADsAAAA7AAWrWiQkAAAOZSURBVFhHvZdfZNZRGMdfk8xkMjMzu0hmJslMkqSLzKSL
+        YQUAAAAJcEhZcwAADrwAAA68AZW8ckkAAAOZSURBVFhHvZdfZNZRGMdfk8xkMjMzu0hmJslMkqSLzKSL
         JElmukgyXSTJpItMMukimVdmF5kkmcnMTGYmmclMFzO7mEySdDGvTDIz7/p8f3vOz97fv/dvffk653yf
         55zzvOf3nD9vqhRks9lJuA4zRtWXzPzvYZO+hr3G9M4u6s2lfMQNxmTNu3PtdJokrUUC5RmTcoCpuMAY
         qBV+h+PBzmhdNlmTSZqgivZv2GuSB/QatCHKX/C0ycmgg5t8Bf6wepeZZb8DM9b0wQSL6Glryq8Drtjk
@@ -195,9 +195,6 @@
         SUVORK5CYII=
 </value>
   </data>
-  <metadata name="contextMenuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>199, 17</value>
-  </metadata>
   <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>26</value>
   </metadata>

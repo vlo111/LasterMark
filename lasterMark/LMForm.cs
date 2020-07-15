@@ -3,10 +3,10 @@
     using System;
     using System.Drawing;
     using System.IO;
-    using System.Linq;
-    using System.Net;
     using System.Windows.Forms;
 
+    using DataAccess;
+    using DataAccess.DTOs;
     using DevExpress.XtraEditors;
 
     using lasterMark.Api;
@@ -23,7 +23,6 @@
 
         public static CompetitorApi Competitor;
 
-        // @"C:\Users\Lifebeget\source\repos\lasterMark\lasterMark\bin\Debug";
         private readonly string currentPath = Application.StartupPath;
 
         private Image _ezdOriginalImage;
@@ -35,6 +34,12 @@
         private int _bgOriginalImageMaxSize;
 
         private bool scale_bg = false;
+
+        private UserFileRepository userFileRepository;
+
+        private User currentUser;
+
+        private UserFiles currentUserFile;
 
         private enum UploadType
         {
@@ -128,16 +133,74 @@
 
         #endregion
 
-        #region Login/Save
-
-        private void SaveBtn_Click(object sender, EventArgs e)
+        #region Login
+        
+        private async void LogInBtn_Click(object sender, EventArgs e)
         {
-            // var showForm = new Engrave();
+            if (string.IsNullOrEmpty(this.loginInput.Text))
+            {
+                XtraMessageBox.Show(
+                    "The login and password field is required, please enter login",
+                    "Warning",
+                    MessageBoxButtons.OK);
+            }
+            else if (string.IsNullOrEmpty(this.passwordInput.Text))
+            {
+                XtraMessageBox.Show(
+                    "The login and password field is required, please enter password",
+                    "Warning",
+                    MessageBoxButtons.OK);
+            }
+            else
+            {
+                try
+                {
+                    var login = this.loginInput.Text;
 
-            // showForm.Show();
+                    var password = this.passwordInput.Text;
+
+                    if (currentUser !=null)
+                    {
+                        if(currentUser.Password == password && currentUser.Login == login)
+                        {
+                            XtraMessageBox.Show($@"Вы уже вошли в систему как - {login}", "Information", MessageBoxButtons.OK);
+                            return;
+                        }
+                    }
+                    // var user = new User();
+
+                    var user = UserRepository.GetUser(this.loginInput.Text, this.passwordInput.Text);
+
+                    if (user == null)
+                    {
+                        user = new User
+                        {
+                            Login = this.loginInput.Text,
+                            Password = this.passwordInput.Text
+                        };
+
+                        UserRepository.Insert(user);
+
+                        user = UserRepository.GetUser(this.loginInput.Text, this.passwordInput.Text);
+                    }
+
+                    currentUser = user;
+
+                    XtraMessageBox.Show("Вы успешно вошли в систему", "Success", MessageBoxButtons.OK);
+
+                }
+                catch (Exception ex)
+                {
+                    XtraMessageBox.Show("Неверный логин или пароль", "Error", MessageBoxButtons.OK);
+                }
+            }
         }
 
-        private async void LogInBtn_Click(object sender, EventArgs e)
+        #endregion
+
+        #region Update ezd
+
+        private async void UpdateEzdOpenDialogBtn_Click(object sender, EventArgs e)
         {
             if (this._ezdOriginalImage != null)
             {
@@ -152,24 +215,11 @@
                 }
                 else
                 {
-                    if (string.IsNullOrEmpty(this.loginInput.Text))
+                    if (currentUser != null)
                     {
-                        XtraMessageBox.Show(
-                            "The login and password field is required, please enter login",
-                            "Warning",
-                            MessageBoxButtons.OK);
-                    }
-                    else if (string.IsNullOrEmpty(this.passwordInput.Text))
-                    {
-                        XtraMessageBox.Show(
-                            "The login and password field is required, please enter password",
-                            "Warning",
-                            MessageBoxButtons.OK);
-                    }
-                    else
-                    {
+                        // Get all events
                         var base64HeaderValue = Convert.ToBase64String(
-                            System.Text.Encoding.UTF8.GetBytes("ya@lenev.ru:poster86"));
+                            System.Text.Encoding.UTF8.GetBytes($@"{this.loginInput.Text}:{this.passwordInput.Text}"));
 
                         const string Url = @"http://openeventor.ru/api/get_events";
 
@@ -177,10 +227,17 @@
 
                         var result = JsonConvert.DeserializeObject<EventorApi>(task);
 
+                        // it will inaitailize this variable {CompetitorApi Competitor}
                         CustomFlyoutDialog.ShowForm(this, null, new XtraUserControl(result));
 
+                        // Update via this.Competitor
                         this.UpdateImage();
                     }
+                    else
+                    {
+                        XtraMessageBox.Show("Пожалуйста войдите в систему", "Error", MessageBoxButtons.OK);
+                    }
+
                 }
             }
             else
@@ -189,23 +246,7 @@
             }
         }
 
-        #endregion
-
-        private void FastenBackgrountCheckEdit_CheckedChanged(object sender, EventArgs e)
-        {
-            var check = (CheckEdit)sender;
-
-            if (check.Checked)
-            {
-                this.backgroundPictureBox.Dock = DockStyle.Fill;
-            }
-            else
-            {
-                this.backgroundPictureBox.Dock = DockStyle.None;
-            }
-        }
-
-        private async void SubmitUrl_Click(object sender, EventArgs e)
+        private async void UpdateUrl_Click(object sender, EventArgs e)
         {
             try
             {
@@ -222,42 +263,22 @@
                     }
                     else
                     {
-                        var url =
-                            @"http://openeventor.ru/api/event/262a9ea6af4e459c92656a62b3db5cb4/engraver/get?bib=123";
-
-                        var task = await RequestData.GetRequestAsync(url);
-
-                        var result = JsonConvert.DeserializeObject<CurrentCompotitorApi>(task);
-
-                        var firstObj = JczLmc.GetEntityNameByIndex(0);
-
-                        var secondObj= JczLmc.GetEntityNameByIndex(1);
-
-                        var thirdObj= JczLmc.GetEntityNameByIndex(2);
-
-                        var lastObj = JczLmc.GetEntityNameByIndex(3);
-
-                        if (!string.IsNullOrEmpty(result.Competitor.FirstName))
+                        if (currentUser != null)
                         {
-                            JczLmc.ChangeTextByName(firstObj, result.Competitor.FirstName);
-                        }
+                            var url =
+                                @"http://openeventor.ru/api/event/262a9ea6af4e459c92656a62b3db5cb4/engraver/get?bib=123";
 
-                        if (!string.IsNullOrEmpty(result.Competitor.FirstName))
+                            var task = await RequestData.GetRequestAsync(url);
+
+                            var result = JsonConvert.DeserializeObject<CurrentCompotitorApi>(task);
+
+                            // Update via CurrentCompotitorApi
+                            UpdateImage(result);
+                        }
+                        else
                         {
-                            JczLmc.ChangeTextByName(secondObj, result.Competitor.LastName);
+                            XtraMessageBox.Show("Пожалуйста войдите в систему", "Error", MessageBoxButtons.OK);
                         }
-
-                        if (!string.IsNullOrEmpty(result.Competitor.TimeOfDistance))
-                        {
-                            JczLmc.ChangeTextByName(thirdObj, result.Competitor.TimeOfDistance);
-                        }
-
-                        if (!string.IsNullOrEmpty(result.Competitor.Distance))
-                        {
-                            JczLmc.ChangeTextByName(lastObj, result.Competitor.Distance);
-                        }
-
-                        this.foregroundPictureBox.Image = JczLmc.GetCurPreviewImage(this.foregroundPictureBox.Width, this.foregroundPictureBox.Height);
                     }
                 }
                 else
@@ -270,6 +291,32 @@
                 XtraMessageBox.Show(exception.Message, "Error", MessageBoxButtons.OK);
             }
         }
+
+        #endregion
+
+        private void saveDataBtn_Click(object sender, EventArgs e)
+        {
+            if (currentUser != null)
+            {
+                Bitmap bm = this.PanelToImage(this.panelControl1);
+
+                currentUserFile.BackgroundImageData = ImageToByteArray(this._bgOriginalImage);
+
+                currentUserFile.EzdImageData = ImageToByteArray(this._ezdOriginalImage);
+
+                currentUserFile.ReadyMadeImageData = ImageToByteArray(bm);
+
+                userFileRepository.Insert(currentUserFile);
+
+                UpdateImage();
+            }
+            else
+            {
+                XtraMessageBox.Show("Сначала войдите в систему", "Error", MessageBoxButtons.OK);
+            }
+        }
+
+        #region CustomMethods
 
         private void Upload(UploadType type)
         {
@@ -332,25 +379,9 @@
                         this._bgOriginalImage = img;
 
                         this.bgFileLbl.Text = Path.GetFileName(ofd.FileName);
-
-                        this.InitialBGImage();
                     }
                 }
             }
-        }
-
-        private void InitialFGImage()
-        {
-            this._ezdOriginalImageMaxSize = PictureControl.ColculateTrackBarMaxSize(
-                this.foregroundPictureBox.Width,
-                this.foregroundPictureBox.Height);
-        }
-
-        private void InitialBGImage()
-        {
-            this._bgOriginalImageMaxSize = PictureControl.ColculateTrackBarMaxSize(
-                this.backgroundPictureBox.Width,
-                this.backgroundPictureBox.Height);
         }
 
         private void LoadImage(string fileName)
@@ -361,19 +392,15 @@
             // get image from sdk
             var img = JczLmc.GetCurPreviewImage(this.foregroundPictureBox.Width, this.foregroundPictureBox.Height);
 
-            // convert to bitmap for rransparent
-            var bitMap = (Bitmap)img;
+            img = SetImageTransparent(img);
 
-            bitMap.MakeTransparent();
 
-            this.foregroundPictureBox.Image = bitMap;
+            this.foregroundPictureBox.Image = img;
 
-            this.foregroundPictureBox.Width = bitMap.Width;
-            this.foregroundPictureBox.Height = bitMap.Height;
+            this.foregroundPictureBox.Width = img.Width;
+            this.foregroundPictureBox.Height = img.Height;
 
-            this._ezdOriginalImage = bitMap;
-
-            this.InitialFGImage();
+            this._ezdOriginalImage = img;
 
             this.ezdFileLbl.Text = Path.GetFileName(fileName);
         }
@@ -382,9 +409,88 @@
         {
             if (Competitor != null)
             {
+                UpdateImage(new CurrentCompotitorApi
+                {
+                    Competitor = new CompetitorApi
+                    {
+                        FirstName = Competitor.FirstName,
+                        LastName = Competitor.LastName,
+                        TimeOfDistance = Competitor.TimeOfDistance,
+                        Distance = Competitor.Distance
+                    }
+                });
             }
 
             Competitor = null;
         }
+
+        private void UpdateImage(CurrentCompotitorApi compotitorApi)
+        {
+            var compotitor = compotitorApi.Competitor;
+
+            if (!string.IsNullOrEmpty(compotitor.FirstName))
+            {
+                JczLmc.ChangeTextByName(JczLmc.GetEntityNameByIndex(0), compotitor.FirstName);
+            }
+
+            if (!string.IsNullOrEmpty(compotitor.LastName))
+            {
+                JczLmc.ChangeTextByName(JczLmc.GetEntityNameByIndex(1), compotitor.LastName);
+            }
+
+            if (!string.IsNullOrEmpty(compotitor.TimeOfDistance))
+            {
+                JczLmc.ChangeTextByName(JczLmc.GetEntityNameByIndex(2), compotitor.TimeOfDistance);
+            }
+
+            if (!string.IsNullOrEmpty(compotitor.Distance))
+            {
+                JczLmc.ChangeTextByName(JczLmc.GetEntityNameByIndex(3), compotitor.Distance);
+            }
+
+            var img = JczLmc.GetCurPreviewImage(this.foregroundPictureBox.Width, this.foregroundPictureBox.Height);
+
+            img = SetImageTransparent(img);
+
+            this.currentUserFile = new UserFiles
+            {
+                UserId = this.currentUser.Id,
+                EzdImageData = ImageToByteArray(img),
+                ReadyMadeImageData = ImageToByteArray(PanelToImage(this.panelControl1))
+            };
+
+            this.foregroundPictureBox.Image = img;
+        }
+
+        private Bitmap SetImageTransparent(Image image)
+        {
+            var bitmap = (Bitmap)image;
+
+            bitmap.MakeTransparent();
+
+            return bitmap;
+        }
+
+        private byte[] ImageToByteArray(Image imageIn)
+        {
+            using (var ms = new MemoryStream())
+            {
+                imageIn.Save(ms, System.Drawing.Imaging.ImageFormat.Bmp);
+                return ms.ToArray();
+            }
+        }
+
+        private Bitmap PanelToImage(PanelControl control)
+        {
+            int width = control.Size.Width;
+            int height = control.Size.Height;
+
+            var bmp = new Bitmap(width, height);
+            control.DrawToBitmap(bmp, new Rectangle(0, 0, width, height));
+
+            return bmp;
+        }
+
+        #endregion
     }
 }
